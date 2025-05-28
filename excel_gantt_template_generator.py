@@ -197,7 +197,7 @@ def set_conditional_format(ws, min_row, max_row):
     # condition 4 : today
     c4 = '=AND( H$2=TODAY() )'
     # condition 5 : overdue (due cells)
-    c5 = '=AND( $E3<TODAY(), $G3<1 )'
+    c5 = '=AND( $E3<>"", $E3<TODAY(), $G3<1 )'
 
     # fromat 1 : fill completed part
     f1 = PatternFill(patternType='solid', bgColor='8888ff')
