@@ -29,6 +29,6 @@ This is a Python script that generates an Excel template file for a gantt chart.
 
 ## Developing environments
 
-- Python 3.13.3
+- Python 3.13.4
 - openpyxl==3.1.5
 
