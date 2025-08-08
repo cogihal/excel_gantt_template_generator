@@ -279,7 +279,7 @@ def main():
     set_conditional_format(ws, start_row, end_row)
 
     while True:
-        print(f"Input file name (It doesn't need '.xlsx' extention.) : ", end='')
+        print("Input file name (It doesn't need '.xlsx' extention.) : ", end='')
         f = input()
         # check if file name is empty
         if f == '':
@@ -296,7 +296,7 @@ def main():
             break
         except:
             print(f"Error : Can't save to '{f}.xlsx")
-            print(f"Do you want to try again? [_/n] : ", end='')
+            print("Do you want to try again? [_/n] : ", end='')
             yn = input().upper()
             if yn == 'N':
                 break 
