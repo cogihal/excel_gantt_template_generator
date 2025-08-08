@@ -2,14 +2,15 @@
 # Genarate an excel gantt chart template script.
 #
 
-import openpyxl
-from openpyxl.styles import Font, PatternFill, Border, Side
-from openpyxl.styles.alignment import Alignment
-from openpyxl.formatting.rule import FormulaRule, DataBarRule
-from openpyxl.utils.cell import get_column_letter
-import json
-import os
 import datetime
+import os
+import tomllib
+
+import openpyxl
+from openpyxl.formatting.rule import DataBarRule, FormulaRule
+from openpyxl.styles import Border, Font, PatternFill, Side
+from openpyxl.styles.alignment import Alignment
+from openpyxl.utils.cell import get_column_letter
 
 # global variables
 fontname    = None  # font name
@@ -300,15 +301,15 @@ def main():
             if yn == 'N':
                 break 
 
-def load_config_from_json():
+def load_config_from_toml():
     """
-    Load configuration from 'config.json'.
+    Load configuration from 'config.toml'.
     """
 
-    config_file = 'config.json' # constant file name
+    config_file = 'config.toml' # constant file name
     if os.path.exists(config_file):
-        with open(config_file, 'r', encoding='utf-8') as f:
-            config = json.load(f)
+        with open(config_file, 'rb') as f:
+            config = tomllib.load(f)
             try:
                 config_font_name   = config['font_name']
                 config_tab_title   = config['tab_title']
@@ -317,7 +318,7 @@ def load_config_from_json():
                 config_end_date    = config['end_date']
                 config_holidais    = config['holidays']
             except KeyError as e:
-                print(f'format error in config.json: {e}')
+                print(f'format error in config.toml: {e}')
                 return False
     else:
         print(f"config file '{config_file}' not found.")
@@ -332,12 +333,12 @@ def load_config_from_json():
         end_gantt   = datetime.datetime.strptime(config_end_date, '%Y/%m/%d').date()
         holidays = [datetime.datetime.strptime(date, '%Y/%m/%d').date() for date in config_holidais]
     except ValueError as e:
-        print(f'format error in config.json: {e}')
+        print(f'format error in config.toml: {e}')
         return False
 
     return True
 
 if __name__ == '__main__':
-    if load_config_from_json():
+    if load_config_from_toml():
         main()
 
