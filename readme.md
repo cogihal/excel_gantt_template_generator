@@ -16,7 +16,7 @@ This is a Python script that generates an Excel template file for a gantt chart.
 
 Prepare 'config.toml' by referring the sample TOML file. The configuration file name must be 'config.toml'.
 
-```toml
+```
 # config.toml
 
 font_name   = font name that you want to use to excel : ex. "Meiryo UI"
